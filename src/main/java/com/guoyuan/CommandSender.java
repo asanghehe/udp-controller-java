@@ -7,10 +7,6 @@ import java.net.InetAddress;
 
 public class CommandSender {
 	
-	private final static int PORT = 6789;
-	
-	private static final String HOSTNAME = "192.168.2.255";
-
 	public void handle(){
 
 		// 传入0表示让操作系统分配一个端口号
@@ -21,16 +17,16 @@ public class CommandSender {
 			
 			socket.setSoTimeout(10000);
 			
-			InetAddress host = InetAddress.getByName(HOSTNAME);
+			InetAddress host = InetAddress.getByName(Const.BROADCAST_ADDRESS);
 			
 			
 			//不同的包（其实可以发到不同的主机上的）
-			DatagramPacket reqStop = new DatagramPacket("stop".getBytes(), "stop".getBytes().length, host, PORT);
+			DatagramPacket reqStop = new DatagramPacket("stop".getBytes(), "stop".getBytes().length, host, Const.COMMAND_PORT);
 
 			//设置为高电位（开关开）
-			DatagramPacket reqHigh = new DatagramPacket("high".getBytes(), "high".getBytes().length, host, PORT);
+			DatagramPacket reqHigh = new DatagramPacket("high".getBytes(), "high".getBytes().length, host, Const.COMMAND_PORT);
 			//设置为低电位（开关关）
-			DatagramPacket reqLow = new DatagramPacket("low".getBytes(), "low".getBytes().length, host, PORT);
+			DatagramPacket reqLow = new DatagramPacket("low".getBytes(), "low".getBytes().length, host, Const.COMMAND_PORT);
 			
 			// 为接受的数据包创建空间
 			DatagramPacket response = new DatagramPacket(new byte[1024], 1024);

@@ -10,8 +10,6 @@ import java.net.DatagramSocket;
  */
 public class ReportReceiver {
 	
-	private static final int PORT = 6890;
-	
 	public void handle(){
 		
 
@@ -23,7 +21,7 @@ public class ReportReceiver {
 			
 			//InetAddress host = InetAddress.getByName(HOSTNAME);
 			
-			ds = new DatagramSocket(PORT);
+			ds = new DatagramSocket(Const.REPORT_PORT);
 
 			//静态的buff
 			byte[] buf = new byte[1024];
